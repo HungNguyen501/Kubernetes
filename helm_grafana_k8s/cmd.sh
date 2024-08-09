@@ -5,4 +5,8 @@ kubectl expose deployment my-grafana --namespace data-platform --type=ClusterIP 
 
 kubectl expose deployment my-grafana --namespace data-platform  --type=LoadBalancer  --name=nginx-service-loadbalancer-data-platform
 
-kubectl expose deployment my-grafana --namespace data-platform --port=80 --target-port=3000 --name nginx-exposed-svc --type LoadBalancer
+
+# kubectl expose deployment my-grafana --namespace data-platform --port=80 --target-port=3000 --name nginx-exposed-svc --type LoadBalancer
+kubectl expose deployment my-grafana --namespace data-platform --port=3000 --target-port=3000 --name nginx-exposed-svc --type LoadBalancer
+
+
