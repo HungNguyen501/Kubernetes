@@ -1,0 +1,25 @@
+[tool.flake8]
+max-line-length = 120
+exclude = [
+    ".git",
+    "__pycache__",
+    "venv",
+]
+
+# https://github.com/atlassian-api/atlassian-python-api/blob/master/pyproject.toml
+[tool.pylint.MASTER]
+ignore-paths = [
+    ".git",
+    "__pycache__",
+    "venv",
+]
+
+[tool.pylint.format]
+max-line-length = 120
+
+
+[tool.pylint.messages_control]
+disable = [
+  "logging-fstring-interpolation",
+  "no-value-for-parameter",
+]
