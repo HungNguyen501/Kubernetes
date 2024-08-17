@@ -69,12 +69,12 @@ def generate_readme_content(dirs: List[str]):
     """Generate content for structure of this project for README file"""
     tree_paths = TreePaths()
     content = ""
-    for dir in dirs:
-        tree_paths.append_file_path(dir)
-    for dir in tree_paths.list_all_leaf_node_paths(current=tree_paths.root_node, path=tree_paths.domain):
-        if dir == "/./README.md":
+    for item in dirs:
+        tree_paths.append_file_path(item)
+    for item in tree_paths.list_all_leaf_node_paths(current=tree_paths.root_node, path=tree_paths.domain):
+        if item == "/./README.md":
             continue
-        content += ITEM_TEMPLATE.format(name=dir[3:], path=dir[1:])
+        content += ITEM_TEMPLATE.format(name=item[3:], path=item[1:])
     return README_TEMPLATE.format(content=content)
 
 
