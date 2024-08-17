@@ -31,7 +31,6 @@ $ docker build -t python-app-example:latest .
 # Verify
 $ docker image ls
 : '
-$ docker image ls
 REPOSITORY                     TAG           IMAGE ID       CREATED          SIZE
 python-app-example             latest        5c19c8d5f3c8   10 minutes ago   445MB
 '
@@ -95,3 +94,6 @@ python-api   3/3     3            3           24m
 $ kubectl delete deployment python-api
 deployment.apps "python-api" deleted
 ```
+
+## References:
+- [Deploying a Python Application with Kubernetes](https://komodor.com/blog/deploying-a-python-application-with-kubernetes/)
