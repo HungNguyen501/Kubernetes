@@ -76,8 +76,6 @@ python-api-7d7b764c66-rjgm9   1/1     Running   0          5m9s
 
 - Expose pods to external:
 ```bash
-$ kubectl apply -f k8s/load_balancer.yaml
-service/python-api changed
 $ kubectl get svc python-api
 NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                                                                   PORT(S)        AGE
 python-api   LoadBalancer   10.100.207.244   aa96d9a54375c45ebae77185a918646b-866320457.ap-southeast-2.elb.amazonaws.com   80:30725/TCP   16m
