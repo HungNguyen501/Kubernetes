@@ -22,7 +22,7 @@ def generate_readme_content(dirs: List[str]):
         if path == "./README.md":
             continue
         elements = path.split("/")
-        content += ITEM_TEMPLATE.format(name="-".join(elements[1:-1]), path="/".join(elements))
+        content += ITEM_TEMPLATE.format(name="-".join(elements[2:-1]), path="/".join(elements))
     return README_TEMPLATE.format(content=content)
 
 
