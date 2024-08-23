@@ -1,0 +1,67 @@
+# data-airflow-postgresql
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-airflow-postgresql-0
+  namespace: data-platform
+  labels:
+    type: local
+    app: data-airflow-postgresql
+spec:
+  storageClassName: gp2
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# redis-db-airflow-redis
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-db-airflow-redis-0
+  namespace: data-platform
+  labels:
+    type: local
+    app: redis-db-airflow-redis
+spec:
+  storageClassName: gp2
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# logs-airflow-triggerer
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: logs-airflow-triggerer-0
+  namespace: data-platform
+  labels:
+    type: local
+    app: logs-airflow-triggerer
+spec:
+  storageClassName: gp2
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# logs-airflow-worker
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: logs-airflow-worker-0
+  namespace: data-platform
+  labels:
+    type: local
+    app: logs-airflow-worker
+spec:
+  storageClassName: gp2
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

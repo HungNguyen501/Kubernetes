@@ -2,25 +2,11 @@ Apache Airflow - Helm chart
 ===
 
 ## Prerequisites
-- Kubectl
+- Enviroments: [here](../../../README.md#prerequisites)
+- Create `airflow-ssh-secret` for gitSync:
 ```bash
-$ kubectl version --client
-Client Version: v1.30.3
-Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
-```
-- Helm chart
-```bash
-$ helm version
-version.BuildInfo{Version:"v3.15.3", GitCommit:"3bb50bbbdd9c946ba9989fbe4fb4104766302a64", GitTreeState:"clean", GoVersion:"go1.22.5"}
-```
-
-- Connects to a K8s cluster already:
-```bash
-$ kubectl cluster-info                                                          
-Kubernetes control plane is running at https://3A49C05A87E05C7B0EA5F113109C3466.gr7.ap-southeast-2.eks.amazonaws.com
-CoreDNS is running at https://3A49C05A87E05C7B0EA5F113109C3466.gr7.ap-southeast-2.eks.amazonaws.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-
-To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'. 
+# Make sure you already to add your private key to GitHub
+$ kubectl create secret generic airflow-ssh-secret --from-file=gitSshKey=/home/mrroot501/.ssh/id_rsa
 ```
 
 ## Development guide
@@ -36,20 +22,30 @@ Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "apache-airflow" chart repository
 Update Complete. ⎈Happy Helming!⎈
 '
-# Create data-platform namespace
-$ kubectl create namespace data-platform && kubectl config set-context --current --namespace=data-platform
+# Create PersistanceVoumeClaim for Airflow
+$ kubectl apply -f k8s/pv_claim.yaml
+: '
+persistentvolumeclaim/data-airflow-postgresql-0 created
+persistentvolumeclaim/redis-db-airflow-redis-0 created
+persistentvolumeclaim/logs-airflow-triggerer-0 created
+persistentvolumeclaim/logs-airflow-worker-0 created
+'
 # Install airflow
-$ helm install airflow apache-airflow/airflow --namespace data-platform -f k8s/values.yaml
+$ helm install airflow apache-airflow/airflow --namespace data-platform -f k8s/values.yaml --debug
 # Access airlfow UI
-$ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow
+$ kubectl port-forward svc/airflow-webserver 8080:8080
+# Apply changes in values.yaml
+$ helm upgrade airflow apache-airflow/airflow --namespace data-platform -f k8s/values.yaml --debug
 ```
 
-- Enable git-sync feature
+- Uninstall Airflow
 ```bash
-
+$ helm delete airflow -n data-platform
+$ kubectl delete pvc --all
+$ kubectl delete pv --all
 ```
 
 Ref links:
 - [Airflow Helm Chart](https://artifacthub.io/packages/helm/apache-airflow/airflow)
-- https://hungngph.medium.com/airflow-on-kubernetes-with-helm-c795545325dc
-- https://github.com/lyabomyr/k8s_local_airflow_deployment
+- [Airflow Production Guide](https://airflow.apache.org/docs/helm-chart/stable/production-guide.html#values-file)
+- [Airflow on Kubernetes with Helm](https://hungngph.medium.com/airflow-on-kubernetes-with-helm-c795545325dc)
