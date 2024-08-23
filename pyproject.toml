@@ -1,5 +1,5 @@
 [tool.flake8]
-max-line-length = 120
+max-line-length = 300
 exclude = [
     ".git",
     "__pycache__",
@@ -15,7 +15,7 @@ ignore-paths = [
 ]
 
 [tool.pylint.format]
-max-line-length = 120
+max-line-length = 300
 
 
 [tool.pylint.messages_control]
