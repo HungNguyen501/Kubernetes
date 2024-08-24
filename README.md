@@ -85,8 +85,8 @@ $ eksctl create addon --name aws-ebs-csi-driver --region ap-southeast-2 --cluste
 
 ## Handbooks
 
-- [airflow-helm_chart](./src/airflow/helm_chart/README.md)
-- [grafana-terraform](./src/grafana/terraform/README.md)
-- [grafana-helm_chart](./src/grafana/helm_chart/README.md)
-- [etl_job](./src/etl_job/README.md)
-- [python_app_example](./src/python_app_example/README.md)
+- [airflow-helm_chart](./services/airflow/helm_chart/README.md)
+- [grafana-terraform](./services/grafana/terraform/README.md)
+- [grafana-helm_chart](./services/grafana/helm_chart/README.md)
+- [etl_job](./services/etl_job/README.md)
+- [python_app_example](./services/python_app_example/README.md)
