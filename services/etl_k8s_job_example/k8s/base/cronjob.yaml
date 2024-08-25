@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: etl-k8s-job-example
+spec:
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  schedule: "15 2 * * *"
+  jobTemplate:
+    metadata:
+      labels:
+        cronjob: etl-k8s-job-example
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: etl-k8s-job-example
+            image: mrroot501/etl-k8s-job-example
+            args:
+            - python3
+            - /app/main.py
+            env:
+            - name: CREDENTIALS
+              value: CREDENTIALS
