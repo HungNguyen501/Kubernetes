@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+bases:
+- ../../base
+images:
+- name: mrroot501/streaming-k8s-job-example
+  newTag: v2024.08.25
+kind: Kustomization
+namespace: data-platform
+patchesStrategicMerge:
+- deployment.yaml
