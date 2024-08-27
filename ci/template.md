@@ -13,6 +13,15 @@ Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
 </details>
 
 <details>
+<summary>Kustomize</summary>
+
+```bash
+$ kustomize version
+v5.3.0
+```
+</details>
+
+<details>
 <summary>Helm</summary>
 
 ```bash

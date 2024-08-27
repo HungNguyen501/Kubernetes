@@ -2,27 +2,7 @@ Python Application Example
 ===
 
 ## Prerequisites
-- Docker
-```bash
-$ docker --version
-Docker version 27.1.1, build 6312585
-```
-
-- Kubectl
-```bash
-$ kubectl version --client
-Client Version: v1.30.3
-Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
-```
-
-- Connects to a K8s cluster already:
-```bash
-$ kubectl cluster-info                                                          
-Kubernetes control plane is running at https://3A49C05A87E05C7B0EA5F113109C3466.gr7.ap-southeast-2.eks.amazonaws.com
-CoreDNS is running at https://3A49C05A87E05C7B0EA5F113109C3466.gr7.ap-southeast-2.eks.amazonaws.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-
-To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'. 
-```
+Check [here](../../README.md#prerequisites)
 
 ## Development guide
 - Build docker image:

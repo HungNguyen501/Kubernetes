@@ -1,4 +1,4 @@
-Python ETL Job Example
+ETL K8S Job Example
 ===
 
 ## Prerequisites
@@ -52,7 +52,7 @@ etl-k8s-job-example   2 * * * *   <none>     False     0        16m             
 '
 ```
 
-- Remove deployment:
+- Remove cronjob:
 ```bash
 $ kubectl delete cronjob etl-k8s-job-example
 : '
