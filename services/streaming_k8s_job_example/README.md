@@ -19,7 +19,8 @@ $ docker run -e CREDENTIALS=123a@ \
     streaming-k8s-job-example:v2024.08.25 \
     /usr/bin/env python3 /app/main.py
 : '
-2024-08-25 09:42:56.565 | INFO     | __main__:<module>:22 - {'event_date': '2024-08-25', 'name': 'Michael Brewer', 'email': 'johnsonpatricia@example.net', 'credentials': '123a@'}
+2024-08-27 00:53:06.197 | INFO     | __main__:<module>:24 - {'event_time': '2024-08-27 00:53:06', 'name': 'Katherine Mccoy', 'email': 'autumnnelson@example.com', 'credentials': '123a@'}
+2024-08-27 00:54:06.201 | INFO     | __main__:<module>:24 - {'event_time': '2024-08-27 00:54:06', 'name': 'Benjamin Yu', 'email': 'bishopjonathon@example.net', 'credentials': '123a@'}
 '
 ```
 
@@ -32,31 +33,31 @@ $ docker push mrroot501/streaming-k8s-job-example:v2024.08.25
 # Verify
 $  docker search mrroot501/streaming-k8s-job-example
 : '
-NAME                                  DESCRIPTION                             STARS     OFFICIAL
-mrroot501/streaming-k8s-job-example                                                 0         
+NAME                                      DESCRIPTION                             STARS     OFFICIAL
+mrroot501/streaming-k8s-job-example                                               0         
 '
 ```
 
 - Deploy application on K8s:
 ```bash
 # Validate syntax
-$ kustomize buil k8s/overlays/dev
+$ kustomize build k8s/overlays/dev
 $ kubectl apply -k k8s/overlays/dev
 : '
 cronjob.batch/streaming-k8s-job-example created
 '
-$ kubectl get cronjob
+$ kubectl get deployments
 : '
-NAME                  SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-streaming-k8s-job-example   2 * * * *   <none>     False     0        16m             19m
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+streaming-k8s-job-example   3/3     3            3           4m46s
 '
 ```
 
 - Remove deployment:
 ```bash
-$ kubectl delete cronjob streaming-k8s-job-example
+$ $ kubectl delete deployment streaming-k8s-job-example
 : '
-cronjob.batch "streaming-k8s-job-example" deleted
+deployment.apps "streaming-k8s-job-example" deleted
 '
 ```
 

@@ -1,4 +1,4 @@
-"""ETL Job"""
+"""Streaming Job Example"""
 from datetime import datetime
 from time import sleep
 import os

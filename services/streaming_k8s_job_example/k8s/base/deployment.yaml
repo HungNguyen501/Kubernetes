@@ -5,8 +5,8 @@ metadata:
 spec:
   strategy:
     rollingUpdate:
-      maxSurge: 4
-      maxUnavailable: 0
+      maxSurge: 4 # specifies the maximum number of Pods that can be created over the desired number of Pods
+      maxUnavailable: 0 # specifies the maximum number of Pods that can be unavailable during the update process
   template:
     spec:
       affinity:
@@ -23,15 +23,18 @@ spec:
               topologyKey: kubernetes.io/hostname
       terminationGracePeriodSeconds: 900 # 15 min for preStop hook
       containers:
-        env:
-        - name: CREDDENTIALS
-          value: CREDDENTIALS
-        image: mrroot501/streaming-k8s-job-example
-        name: streaming-k8s-job-example
-        resources:
-          limits:
-            cpu: 1
-            memory: 2048Mi
-          requests:
-            cpu: 1
-            memory: 1024Mi
+        - name: streaming-k8s-job-example
+          image: mrroot501/streaming-k8s-job-example
+          args:
+          - python3
+          - /app/main.py
+          env:
+          - name: CREDENTIALS
+            value: CREDENTIALS
+          resources:
+            limits:
+              cpu: 1
+              memory: 2048Mi
+            requests:
+              cpu: 1
+              memory: 1024Mi

@@ -3,14 +3,11 @@ kind: Deployment
 metadata:
   name: streaming-k8s-job-example
 spec:
-  replicas: 1
+  replicas: 3
   template:
     spec:
       containers:
       - name: streaming-k8s-job-example
-        args:
-        - python3
-        - /app/main.py
         env:
         - name: CREDENTIALS
-          value: "123a@"
+          value: 123a@
